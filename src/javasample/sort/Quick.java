@@ -49,7 +49,7 @@ public class Quick {
         sort(a, j + 1, high);
     }
 
-    private static void sort1(int[] a, int lo, int hi) { // See page 289 for public sort() that calls this method.
+    private static void sort1(int[] a, int lo, int hi) { 
         if (hi <= lo) {
             return;
         }
