@@ -49,10 +49,30 @@ public class Quick {
         sort(a, j + 1, high);
     }
 
+    private static void sort1(int[] a, int lo, int hi) { // See page 289 for public sort() that calls this method.
+        if (hi <= lo) {
+            return;
+        }
+        int lt = lo, i = lo + 1, gt = hi;
+        int v = a[lo];
+        while (i <= gt) {
+            int cmp = Integer.compare(a[i], v);
+            if (cmp < 0) {
+                exch(a, lt++, i++);
+            } else if (cmp > 0) {
+                exch(a, i, gt--);
+            } else {
+                i++;
+            }
+        } // Now a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi].
+        sort(a, lo, lt - 1);
+        sort(a, gt + 1, hi);
+    }
+
     public static void main(String[] args) { // Read strings from standard input, sort them, and print.
         int[] a = {12, 33, 42, 20, 23, 56, 9};
         show(a);
-        sort(a, 0, a.length - 1);
+        sort1(a, 0, a.length - 1);
         assert isSorted(a);
         show(a);
     }
